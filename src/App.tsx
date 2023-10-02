@@ -1,6 +1,4 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 import Header from "./components/Header";
 import ScoreBoard from "./components/ScoreBoard";
@@ -14,6 +12,7 @@ function App() {
     <>
       <Header>
         <ScoreBoard></ScoreBoard>
+        <h1>Pokemon Memory Cards</h1>
       </Header>
       <CardContainer>
         <Card></Card>

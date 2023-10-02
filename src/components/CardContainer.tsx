@@ -1,3 +1,7 @@
-export default function CardContainer() {
-  
+export default function CardContainer({children}) {
+  return (
+    <div className="card-container">
+      {children}
+    </div>
+  )
 }
