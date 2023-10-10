@@ -10,11 +10,21 @@ export default function Card({used, index, setCards}) {
 
   function markCard() {
     setCards(prevCards => {
-      const targetCard = prevCards.filter(card => card.id === index)[0]
+      const targetCard = {used: true, id: index}
       const otherCards = prevCards.filter(card => card.id !== index)
-      targetCard.used = true
       return [...otherCards, targetCard]
     })
+  }
+
+  function resetCards() {
+    setCards(prevCards => {
+      return prevCards.map(card => ({id: card.id, used: false}))
+    })
+  }
+
+  function handleClick() {
+    shuffleCards()
+    used ? resetCards() : markCard()
   }
 
   useEffect(() => {
@@ -26,12 +36,8 @@ export default function Card({used, index, setCards}) {
   })
 
   return (
-    <div onClick={() => {
-        markCard()
-        shuffleCards()
-      }} className="card">
+    <div onClick={handleClick} className="card">
       <h1>Card</h1>
-      {used && <p>used</p>}
       <img src={url} alt="" />
     </div>
   )
