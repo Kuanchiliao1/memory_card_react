@@ -3,6 +3,7 @@ import scrambleArray from "../utils"
 
 export default function Card({used, index, setCards}) {
   const [url, setUrl] = useState('');
+  const [pokemon, setPokemon] = useState('');
 
   function shuffleCards() {
     setCards(prevCards => scrambleArray(prevCards))
@@ -32,12 +33,13 @@ export default function Card({used, index, setCards}) {
     .then(response => response.json())
     .then(data => {
       setUrl(data.sprites.front_default);
+      setPokemon(data.name[0].toUpperCase() + data.name.slice(1))
     });
   })
 
   return (
     <div onClick={handleClick} className="card">
-      <h1>Card</h1>
+      <h1>{pokemon}</h1>
       <img src={url} alt="" />
     </div>
   )
