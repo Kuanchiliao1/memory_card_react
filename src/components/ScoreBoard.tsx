@@ -1,6 +1,6 @@
-export default function ScoreBoard() {
+export default function ScoreBoard({current}) {
   return (<>
-    <p>Current: 1</p>
+    <p>{`Current: ${current}`}</p>
     <p>Best: 3</p>
   </>)
 }

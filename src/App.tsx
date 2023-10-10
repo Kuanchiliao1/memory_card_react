@@ -11,9 +11,8 @@ function App() {
   return (
     <>
       <Header>
-        <ScoreBoard></ScoreBoard>
+        <ScoreBoard current={cards.filter(card => card.used === true).length}></ScoreBoard>
         <h1>Pokemon Memory Cards</h1>
-        <h1>{cards}</h1>
       </Header>
       <CardContainer>
         {cards.map((card) => (<Card used={card.used} setCards={setCards} index={card.id} />))}
