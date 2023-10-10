@@ -6,21 +6,18 @@ import Card from "./components/Card";
 import CardContainer from "./components/CardContainer";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [cards, useCards] = useState([10,200,300,400,500,600])
+  const [usedCards, useUsedCards] = useState([])
 
   return (
     <>
       <Header>
         <ScoreBoard></ScoreBoard>
         <h1>Pokemon Memory Cards</h1>
+        <h1>{cards}</h1>
       </Header>
       <CardContainer>
-        <Card></Card>
-        <Card></Card>
-        <Card></Card>
-        <Card></Card>
-        <Card></Card>
-        <Card></Card>
+        {cards.map((index) => (<Card used={false} useCards={useCards} index={index} />))}
       </CardContainer>
     </>
   );
