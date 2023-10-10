@@ -6,8 +6,7 @@ import Card from "./components/Card";
 import CardContainer from "./components/CardContainer";
 
 function App() {
-  const [cards, useCards] = useState([10,200,300,400,500,600])
-  const [usedCards, useUsedCards] = useState([])
+  const [cards, setCards] = useState([{used: false, id: 1}, {used: false, id: 2}, {used: false, id: 3}, {used: false, id: 4}, {used: false, id: 5}, {used: false, id: 10}])
 
   return (
     <>
@@ -17,7 +16,7 @@ function App() {
         <h1>{cards}</h1>
       </Header>
       <CardContainer>
-        {cards.map((index) => (<Card used={false} useCards={useCards} index={index} />))}
+        {cards.map((card) => (<Card used={card.used} setCards={setCards} index={card.id} />))}
       </CardContainer>
     </>
   );
