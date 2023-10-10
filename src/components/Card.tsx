@@ -1,11 +1,20 @@
 import { useEffect, useState } from "react";
 import scrambleArray from "../utils"
 
-export default function Card({index, useCards}) {
+export default function Card({used, index, setCards}) {
   const [url, setUrl] = useState('');
 
   function shuffleCards() {
-    useCards(prevCards => scrambleArray(prevCards))
+    setCards(prevCards => scrambleArray(prevCards))
+  }
+
+  function markCard() {
+    setCards(prevCards => {
+      const targetCard = prevCards.filter(card => card.id === index)[0]
+      const otherCards = prevCards.filter(card => card.id !== index)
+      targetCard.used = true
+      return [...otherCards, targetCard]
+    })
   }
 
   useEffect(() => {
@@ -13,13 +22,16 @@ export default function Card({index, useCards}) {
     .then(response => response.json())
     .then(data => {
       setUrl(data.sprites.front_default);
-      console.log(data.sprites.front_default);
     });
   })
 
   return (
-    <div onClick={shuffleCards} className="card">
+    <div onClick={() => {
+        markCard()
+        shuffleCards()
+      }} className="card">
       <h1>Card</h1>
+      {used && <p>used</p>}
       <img src={url} alt="" />
     </div>
   )
