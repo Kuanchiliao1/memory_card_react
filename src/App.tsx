@@ -7,11 +7,12 @@ import CardContainer from "./components/CardContainer";
 
 function App() {
   const [cards, setCards] = useState([{used: false, id: 1}, {used: false, id: 2}, {used: false, id: 3}, {used: false, id: 4}, {used: false, id: 5}, {used: false, id: 10}])
+  const [bestScore, setBestScore] = useState(0);
 
   return (
     <>
       <Header>
-        <ScoreBoard current={cards.filter(card => card.used === true).length}></ScoreBoard>
+        <ScoreBoard bestScore={bestScore} setBestScore={setBestScore} currentScore={cards.filter(card => card.used === true).length}></ScoreBoard>
         <h1>Pokemon Memory Cards</h1>
       </Header>
       <CardContainer>

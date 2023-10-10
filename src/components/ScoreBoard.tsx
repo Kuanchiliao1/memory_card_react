@@ -1,6 +1,10 @@
-export default function ScoreBoard({current}) {
+export default function ScoreBoard({currentScore, bestScore, setBestScore}) {
+  if (currentScore > bestScore) {
+    setBestScore(currentScore)
+  }
+
   return (<>
-    <p>{`Current: ${current}`}</p>
-    <p>Best: 3</p>
+    <p>{`Current: ${currentScore}`}</p>
+    <p>{`Best: ${bestScore}`}</p>
   </>)
 }
